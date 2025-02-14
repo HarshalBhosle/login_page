@@ -4,7 +4,7 @@ node {
 
     stage('Checkout') {
         echo 'Checking out code from repository...'
-        git branch: 'main', url: 'https://github.com/your-repo/your-project.git'
+        git branch: 'main', url: 'https://github.com/HarshalBhosle/login_page.git'
     }
 
     stage('Build') {
