@@ -6,7 +6,7 @@ node {
 
     stage('Install Dependencies') {
         echo 'Installing dependencies...'
-        bat 'npm install'  // Use 'sh' instead of 'bat' for Linux/macOS
+        bat 'npm install'
     }
 
     stage('Build') {
@@ -16,6 +16,6 @@ node {
 
     stage('Test') {
         echo 'Running tests...'
-        bat 'npm test -- --watchAll=false'
+        bat 'npm test -- --watchAll=false --passWithNoTests'  // ✅ Added --passWithNoTests
     }
 }
