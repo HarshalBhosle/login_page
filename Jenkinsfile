@@ -9,18 +9,22 @@ node {
 
     stage('Build') {
         echo 'Building the application...'
-        sh 'mvn clean package' // Example for a Maven project
+        bat 'mvn clean package' // Replaced `sh` with `bat`
     }
 
     stage('Test') {
         echo 'Running tests...'
-        sh 'mvn test' // Example for running tests
+        bat 'mvn test' // Replaced `sh` with `bat`
     }
 
     stage('Deploy') {
         echo 'Deploying the application...'
-        sh "docker build -t ${APP_NAME}:${VERSION} ."
-        sh "docker push ${APP_NAME}:${VERSION}"
+        
+        // Ensure Docker is installed and running
+        bat "docker build -t ${APP_NAME}:${VERSION} ."
+        bat "docker tag ${APP_NAME}:${VERSION} your-dockerhub-username/${APP_NAME}:${VERSION}"
+        bat "docker login -u your-dockerhub-username -p your-dockerhub-password"
+        bat "docker push your-dockerhub-username/${APP_NAME}:${VERSION}"
     }
 
     // Post-build actions
